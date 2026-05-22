@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Types of Rocks - 3rd Grade Social Science</title>
+  <style>
+    body {
+      font-family: "Comic Sans MS", Arial, sans-serif;
+      background: linear-gradient(#e3f2fd, #fff);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: linear-gradient(90deg, #ffb347, #ffcc33);
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.3em;
+    }
+    header p {
+      margin: 5px 0 0;
+      font-size: 1.1em;
+    }
+    main {
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .section {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+    h2 {
+      margin-top: 0;
+      color: #2b6cb0;
+    }
+    h3 {
+      color: #d35400;
+      margin-bottom: 5px;
+    }
+    .rock-type {
+      border-left: 6px solid #2b6cb0;
+      padding-left: 10px;
+      margin-bottom: 15px;
+    }
+    .examples {
+      margin-top: 5px;
+      font-style: italic;
+      color: #555;
+    }
+    .note {
+      font-size: 0.9em;
+      color: #666;
+    }
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 10px;
+      font-size: 0.8em;
+      margin-left: 5px;
+      color: #fff;
+    }
+    .tag-igneous { background: #e67e22; }
+    .tag-sedimentary { background: #27ae60; }
+    .tag-metamorphic { background: #8e44ad; }
+
+    /* Buttons and info boxes */
+    .btn {
+      background: #2b6cb0;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 0.95em;
+      margin: 5px 0;
+    }
+    .btn:hover {
+      background: #1a4f80;
+    }
+    .info-box {
+      background: #e8f4ff;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Highlight words game */
+    .highlight-word {
+      padding: 2px 4px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .highlighted {
+      background: #fff59d;
+    }
+
+    /* Quiz styles */
+    .quiz-question {
+      margin-bottom: 12px;
+    }
+    .quiz-options button {
+      background: #f1c40f;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 10px;
+      margin: 3px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    .quiz-options button:hover {
+      background: #d4ac0d;
+    }
+    .correct {
+      background: #2ecc71 !important;
+      color: white;
+    }
+    .incorrect {
+      background: #e74c3c !important;
+      color: white;
+    }
+    .feedback {
+      margin-top: 5px;
+      font-weight: bold;
+    }
+
+    /* Drag and drop game */
+    .drag-drop-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .rock-card {
+      background: #fff7e6;
+      border-radius: 10px;
+      padding: 8px;
+      width: 130px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      cursor: grab;
+      margin-bottom: 5px;
+    }
+    .drop-zone {
+      flex: 1;
+      min-width: 200px;
+      min-height: 120px;
+      background: #f4f4f4;
+      border-radius: 10px;
+      border: 2px dashed #bbb;
+      padding: 10px;
+    }
+    .drop-zone h4 {
+      margin-top: 0;
+      text-align: center;
+    }
+    .drop-zone.highlight {
+      border-color: #2b6cb0;
+      background: #e6f2ff;
+    }
+    .small {
+      font-size: 0.85em;
+      color: #555;
+    }
+
+    /* Flashcards */
+    .flashcards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .flashcard {
+      width: 150px;
+      height: 90px;
+      background: #ffe6f2;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5px;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+    .flashcard.back {
+      background: #e8ffe6;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8em;
+      color: #777;
+      padding: 10px 0 20px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Types of Rocks</h1>
+  <p>3rd Grade Social Science – Let’s learn about rocks in English!</p>
+</header>
+
+<main>
+  <!-- Intro -->
+  <section class="section">
+    <h2>What is a rock?</h2>
+    <p>
+      <span class="highlight-word" onclick="toggleHighlight(this)">Rock</span>
+      is a solid substance that contains one or more
+      <span class="highlight-word" onclick="toggleHighlight(this)">minerals</span>.
+    </p>
+    <p>There are <strong>three types of rock</strong> that form in different ways:</p>
+    <ul>
+      <li><strong>Igneous rock</strong></li>
+      <li><strong>Sedimentary rock</strong></li>
+      <li><strong>Metamorphic rock</strong></li>
+    </ul>
+    <button class="btn" onclick="toggleInfo('intro-info')">👀 Show / Hide Picture Ideas</button>
+    <div id="intro-info" class="info-box">
+      <p class="note">Imagine these pictures in your mind:</p>
+      <ul>
+        <li>Igneous rock: hot lava becoming hard rock.</li>
+        <li>Sedimentary rock: many layers of sand and stones.</li>
+        <li>Metamorphic rock: folded rock changed by heat and pressure.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Rock types explanation -->
+  <section class="section">
+    <h2>The three types of rock</h2>
+
+    <div class="rock-type">
+      <h3>Igneous rock <span class="tag tag-igneous">Hot rock</span></h3>
+      <p>Hot, liquid rock (<strong>magma</strong> and <strong>lava</strong>) cools down and becomes solid rock.</p>
+      <p class="examples"><strong>Examples:</strong> granite, basalt, pumice</p>
+      <p class="note">(Think of a lava flow that becomes hard rock.)</p>
+    </div>
+
+    <div class="rock-type">
+      <h3>Sedimentary rock <span class="tag tag-sedimentary">Layers</span></h3>
+      <p>Sand, stones and other particles form <strong>layers</strong> that slowly become solid rock.</p>
+      <p class="examples"><strong>Examples:</strong> sandstone, limestone, shale</p>
+      <p class="note">(Think of many sedimentary rock layers, one on top of another.)</p>
+    </div>
+
+    <div class="rock-type">
+      <h3>Metamorphic rock <span class="tag tag-metamorphic">Change</span></h3>
+      <p>Rock changes under a lot of <strong>heat</strong> and <strong>pressure</strong>. It forms new types of rock.</p>
+      <p class="examples"><strong>Examples:</strong> marble, slate, quartzite</p>
+      <p class="note">(Think of folded marble that has changed shape.)</p>
+    </div>
+  </section>
+
+  <!-- Interactive quiz: multiple choice -->
+  <section class="section">
+    <h2>Quick Quiz – Choose the correct answer</h2>
+
+    <div class="quiz-question">
+      <p>1. Which rock forms when hot lava cools down?</p>
+      <div class="quiz-options">
+        <button onclick="checkQuiz(this, 'correct')">Igneous rock</button>
+        <button onclick="checkQuiz(this, 'incorrect')">Sedimentary rock</button>
+        <button onclick="checkQuiz(this, 'incorrect')">Metamorphic rock</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <p>2. Which rock has many layers of sand and stones?</p>
+      <div class="quiz-options">
+        <button onclick="checkQuiz(this, 'incorrect')">Igneous rock</button>
+        <button onclick="checkQuiz(this, 'correct')">Sedimentary rock</button>
+        <button onclick="checkQuiz(this, 'incorrect')">Metamorphic rock</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-question">
+      <p>3. Which rock changes with heat and pressure?</p>
+      <div class="quiz-options">
+        <button onclick="checkQuiz(this, 'incorrect')">Igneous rock</button>
+        <button onclick="checkQuiz(this, 'incorrect')">Sedimentary rock</button>
+        <button onclick="checkQuiz(this, 'correct')">Metamorphic rock</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <!-- Sorting Game – MIXED -->
+  <section class="section">
+    <h2>Sorting Game – Match the rock to its type</h2>
+    <p>Drag each rock name to the correct box: <strong>Igneous</strong>, <strong>Sedimentary</strong> or <strong>Metamorphic</strong>.</p>
+
+    <div class="drag-drop-container">
+      <!-- Rock cards (MIXED ORDER) -->
+      <div>
+        <div class="rock-card" draggable="true" data-type="sedimentary">limestone</div>
+        <div class="rock-card" draggable="true" data-type="igneous">pumice</div>
+        <div class="rock-card" draggable="true" data-type="metamorphic">marble</div>
+        <div class="rock-card" draggable="true" data-type="igneous">granite</div>
+        <div class="rock-card" draggable="true" data-type="sedimentary">shale</div>
+        <div class="rock-card" draggable="true" data-type="metamorphic">slate</div>
+        <div class="rock-card" draggable="true" data-type="igneous">basalt</div>
+        <div class="rock-card" draggable="true" data-type="sedimentary">sandstone</div>
+        <div class="rock-card" draggable="true" data-type="metamorphic">quartzite</div>
+      </div>
+
+      <!-- Drop zones -->
+      <div class="drop-zone" data-accept="igneous">
+        <h4>Igneous rock</h4>
+        <p class="small">Hot lava cools down.</p>
+      </div>
+      <div class="drop-zone" data-accept="sedimentary">
+        <h4>Sedimentary rock</h4>
+        <p class="small">Layers of sand and stones.</p>
+      </div>
+      <div class="drop-zone" data-accept="metamorphic">
+        <h4>Metamorphic rock</h4>
+        <p class="small">Changes with heat and pressure.</p>
+      </div>
+    </div>
+
+    <button class="btn" onclick="checkDragDrop()">✅ Check my answers</button>
+    <p id="dragdrop-result" class="feedback"></p>
+  </section>
+
+  <!-- Flashcards -->
+  <section class="section">
+    <h2>Flip the Flashcards – Remember the key ideas</h2>
+    <p>Click on each card to flip it and see the answer.</p>
+    <div class="flashcards">
+      <div class="flashcard" onclick="flipCard(this)" data-front="Igneous rock" data-back="Hot lava or magma cools and becomes solid rock.">
+        Igneous rock
+      </div>
+      <div class="flashcard" onclick="flipCard(this)" data-front="Sedimentary rock" data-back="Layers of sand, stones and particles become solid rock.">
+        Sedimentary rock
+      </div>
+      <div class="flashcard" onclick="flipCard(this)" data-front="Metamorphic rock" data-back="Rock changes with heat and pressure.">
+        Metamorphic rock
+      </div>
+      <div class="flashcard" onclick="flipCard(this)" data-front="Example: granite" data-back="Granite is an igneous rock.">
+        Example: granite
+      </div>
+      <div class="flashcard" onclick="flipCard(this)" data-front="Example: sandstone" data-back="Sandstone is a sedimentary rock.">
+        Example: sandstone
+      </div>
+      <div class="flashcard" onclick="flipCard(this)" data-front="Example: marble" data-back="Marble is a metamorphic rock.">
+        Example: marble
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Types of Rocks – 3rd Grade Social Science • You are a rock expert now!
+</footer>
+
+<script>
+  // Show / hide info boxes
+  function toggleInfo(id) {
+    const box = document.getElementById(id);
+    box.style.display = box.style.display === "block" ? "none" : "block";
+  }
+
+  // Highlight words
+  function toggleHighlight(span) {
+    span.classList.toggle("highlighted");
+  }
+
+  // Quiz logic
+  function checkQuiz(button, status) {
+    const container = button.parentElement;
+    const feedback = container.parentElement.querySelector(".feedback");
+    const buttons = container.querySelectorAll("button");
+
+    buttons.forEach(b => b.classList.remove("correct", "incorrect"));
+
+    if (status === "correct") {
+      button.classList.add("correct");
+      feedback.textContent = "✅ Correct!";
+      feedback.style.color = "#2ecc71";
+    } else {
+      button.classList.add("incorrect");
+      feedback.textContent = "❌ Try again.";
+      feedback.style.color = "#e74c3c";
+    }
+  }
+
+  // Drag and drop logic
+  let draggedItem = null;
+
+  document.querySelectorAll(".rock-card").forEach(card => {
+    card.addEventListener("dragstart", function () {
+      draggedItem = this;
+      setTimeout(() => this.style.opacity = "0.5", 0);
+    });
+    card.addEventListener("dragend", function () {
+      this.style.opacity = "1";
+      draggedItem = null;
+    });
+  });
+
+  document.querySelectorAll(".drop-zone").forEach(zone => {
+    zone.addEventListener("dragover", function (e) {
+      e.preventDefault();
+      this.classList.add("highlight");
+    });
+    zone.addEventListener("dragleave", function () {
+      this.classList.remove("highlight");
+    });
+    zone.addEventListener("drop", function (e) {
+      e.preventDefault();
+      this.classList.remove("highlight");
+      if (draggedItem) this.appendChild(draggedItem);
+    });
+  });
+
+  function checkDragDrop() {
+    let correct = 0;
+    let total = 0;
+
+    document.querySelectorAll(".drop-zone").forEach(zone => {
+      const acceptType = zone.getAttribute("data-accept");
+      const cards = zone.querySelectorAll(".rock-card");
+      cards.forEach(card => {
+        total++;
+        if (card.getAttribute("data-type") === acceptType) correct++;
+      });
+    });
+
+    const result = document.getElementById("dragdrop-result");
+
+    if (total === 0) {
+      result.textContent = "Move the rocks into the boxes first!";
+      result.style.color = "#e67e22";
+      return;
+    }
+
+    if (correct === total) {
+      result.textContent = "🎉 Great job! All rocks are in the correct place.";
+      result.style.color = "#2ecc71";
+    } else {
+      result.textContent = "Keep trying! Some rocks are not in the correct box.";
+      result.style.color = "#e74c3c";
+    }
+  }
+
+  // Flashcards logic
+  function flipCard(card) {
+    const front = card.getAttribute("data-front");
+    const back = card.getAttribute("data-back");
+    if (card.classList.contains("back")) {
+      card.textContent = front;
+      card.classList.remove("back");
+    } else {
+      card.textContent = back;
+      card.classList.add("back");
+    }
+  }
+</script>
+</body>
+</html>

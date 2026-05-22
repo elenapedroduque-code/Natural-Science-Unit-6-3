@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minerals - Social Science 3º</title>
+
+  <style>
+    body { font-family:"Comic Sans MS", Arial; background:#f2fbff; margin:0; }
+    header { background:linear-gradient(90deg,#4fc3f7,#81c784); color:white; text-align:center; padding:20px; }
+    main { max-width:1000px; margin:20px auto; padding:20px; }
+    .section { background:white; padding:20px; border-radius:12px; margin-bottom:20px; box-shadow:0 3px 6px rgba(0,0,0,0.1); }
+    .cards { display:flex; flex-wrap:wrap; gap:12px; }
+    .card { background:#e3f2fd; padding:10px; border-radius:10px; width:200px; text-align:center; }
+    .card img { width:100%; height:120px; object-fit:cover; border-radius:10px; }
+
+    /* Drag & Drop */
+    .drag-item { background:#ffcc80; padding:5px 10px; border-radius:20px; display:inline-block; margin:4px; cursor:grab; }
+    .drag-list, .drop-zone { background:#fff3e0; padding:10px; border-radius:10px; min-height:150px; }
+    .drop-zone { background:#ede7f6; border:2px dashed #5e35b1; }
+
+    /* Match images smaller */
+    .match-img {
+      width: 160px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* True/False + Quiz */
+    .btn { background:#42a5f5; color:white; border:none; padding:8px 16px; border-radius:20px; cursor:pointer; }
+    .btn-true { background:#66bb6a; color:white; border:none; padding:5px 12px; border-radius:20px; cursor:pointer; }
+    .btn-false { background:#ef5350; color:white; border:none; padding:5px 12px; border-radius:20px; cursor:pointer; }
+    .feedback.correct { color:#2e7d32; }
+    .feedback.incorrect { color:#c62828; }
+    .choice { background:#ce93d8; padding:5px 10px; border-radius:20px; margin:4px; display:inline-block; cursor:pointer; }
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>MINERALS</h1>
+  <p>Social Science · 3rd Grade</p>
+</header>
+
+<main>
+
+<!-- SECTION 1 -->
+<section class="section">
+  <h2>1. What is a mineral?</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="quartz.jpg">
+      <h3>Solid</h3>
+      Minerals are solid substances.
+    </div>
+    <div class="card">
+      <img src="diamond.jpg">
+      <h3>Orderly structure</h3>
+      Particles are arranged in a special order.
+    </div>
+    <div class="card">
+      <img src="inorganic.jpg">
+      <h3>Inorganic</h3>
+      They do not come from living things.
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section class="section">
+  <h2>2. Types of minerals (Drag & Drop)</h2>
+
+  <div class="drag-list">
+    <span class="drag-item" draggable="true" data-type="one">graphite</span>
+    <span class="drag-item" draggable="true" data-type="many">quartz</span>
+    <span class="drag-item" draggable="true" data-type="one">sulphur</span>
+    <span class="drag-item" draggable="true" data-type="many">hematite</span>
+    <span class="drag-item" draggable="true" data-type="one">copper</span>
+    <span class="drag-item" draggable="true" data-type="many">gypsum</span>
+  </div>
+
+  <div style="display:flex; gap:20px; margin-top:20px;">
+    <div class="drop-zone" data-accept="one"><h3>One type of particle</h3></div>
+    <div class="drop-zone" data-accept="many"><h3>Two or more types</h3></div>
+  </div>
+
+  <p id="dragFeedback"></p>
+</section>
+
+<!-- SECTION 3 -->
+<section class="section">
+  <h2>3. Physical properties</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="quartz.jpg">
+      <h3>Colour</h3>
+      One colour or many colours.
+    </div>
+    <div class="card">
+      <img src="graphite.jpg">
+      <h3>Shape</h3>
+      Minerals have different shapes.
+    </div>
+    <div class="card">
+      <img src="diamond.jpg">
+      <h3>Hardness</h3>
+      Diamond is the hardest. Talc is the softest.
+    </div>
+  </div>
+</section>
+
+<!-- TRUE OR FALSE -->
+<section class="section">
+  <h2>4. True or False</h2>
+
+  <div class="true-false-item" data-answer="true">
+    Minerals are solid substances.
+    <button class="btn-true">TRUE</button><button class="btn-false">FALSE</button>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="true-false-item" data-answer="false">
+    Minerals come from living things.
+    <button class="btn-true">TRUE</button><button class="btn-false">FALSE</button>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="true-false-item" data-answer="true">
+    Quartz can have many colours.
+    <button class="btn-true">TRUE</button><button class="btn-false">FALSE</button>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="true-false-item" data-answer="false">
+    Talc is the hardest mineral.
+    <button class="btn-true">TRUE</button><button class="btn-false">FALSE</button>
+    <div class="feedback"></div>
+  </div>
+
+  <button class="btn" id="resetTF">Reset</button>
+</section>
+
+<!-- MATCH MINERAL WITH NAME -->
+<section class="section">
+  <h2>5. Match the mineral with its name (Drag & Drop)</h2>
+
+  <p>Drag the correct name to each mineral picture.</p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:20px;">
+
+    <div style="flex:1;">
+      <div class="drop-zone" data-accept="quartz">
+        <img src="quartz.jpg" class="match-img">
+      </div>
+
+      <div class="drop-zone" data-accept="graphite">
+        <img src="graphite.jpg" class="match-img">
+      </div>
+
+      <div class="drop-zone" data-accept="copper">
+        <img src="copper.jpg" class="match-img">
+      </div>
+    </div>
+
+    <div style="flex:1;">
+      <div class="drop-zone" data-accept="sulfur">
+        <img src="sulfur.jpg" class="match-img">
+      </div>
+
+      <div class="drop-zone" data-accept="hematite">
+        <img src="hematite.jpg" class="match-img">
+      </div>
+
+      <div class="drop-zone" data-accept="gypsum">
+        <img src="gypsum.jpg" class="match-img">
+      </div>
+    </div>
+
+  </div>
+
+  <h3>Mineral names:</h3>
+  <div class="drag-list">
+    <span class="drag-item" draggable="true" data-type="quartz">quartz</span>
+    <span class="drag-item" draggable="true" data-type="graphite">graphite</span>
+    <span class="drag-item" draggable="true" data-type="copper">copper</span>
+    <span class="drag-item" draggable="true" data-type="sulfur">sulphur</span>
+    <span class="drag-item" draggable="true" data-type="hematite">hematite</span>
+    <span class="drag-item" draggable="true" data-type="gypsum">gypsum</span>
+  </div>
+
+  <p id="matchFeedback"></p>
+</section>
+
+<!-- FINAL QUIZ -->
+<section class="section">
+  <h2>6. Final Quiz (Self‑checking)</h2>
+
+  <div class="quiz-question" data-correct="solid">
+    <p><strong>1.</strong> Minerals are...</p>
+    <span class="choice" data-value="liquid">liquid</span>
+    <span class="choice" data-value="gas">gas</span>
+    <span class="choice" data-value="solid">solid</span>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" data-correct="inorganic">
+    <p><strong>2.</strong> Minerals come from...</p>
+    <span class="choice" data-value="plants">plants</span>
+    <span class="choice" data-value="animals">animals</span>
+    <span class="choice" data-value="inorganic">inorganic matter</span>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" data-correct="quartz">
+    <p><strong>3.</strong> Which mineral can have many colours?</p>
+    <span class="choice" data-value="diamond">diamond</span>
+    <span class="choice" data-value="quartz">quartz</span>
+    <span class="choice" data-value="talc">talc</span>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" data-correct="diamond">
+    <p><strong>4.</strong> The hardest mineral is...</p>
+    <span class="choice" data-value="talc">talc</span>
+    <span class="choice" data-value="diamond">diamond</span>
+    <span class="choice" data-value="copper">copper</span>
+    <div class="feedback"></div>
+  </div>
+
+  <button class="btn" id="resetFinalQuiz">Reset Quiz</button>
+</section>
+
+</main>
+
+<script>
+let draggedItem=null;
+
+/* DRAG & DROP (types of minerals) */
+document.querySelectorAll('.drag-item').forEach(i=>{
+  i.addEventListener('dragstart',()=>draggedItem=i);
+  i.addEventListener('dragend',()=>draggedItem=null);
+});
+
+document.querySelectorAll('.drop-zone').forEach(zone=>{
+  zone.addEventListener('dragover',e=>e.preventDefault());
+  zone.addEventListener('drop',e=>{
+    e.preventDefault();
+    if(!draggedItem) return;
+    const correct=zone.dataset.accept;
+    const type=draggedItem.dataset.type;
+    const fb=document.getElementById('dragFeedback');
+    if(correct===type){
+      zone.appendChild(draggedItem);
+      fb.textContent="Correct!";
+      fb.className="feedback correct";
+    } else {
+      fb.textContent="Try again.";
+      fb.className="feedback incorrect";
+    }
+  });
+});
+
+/* MATCH MINERAL WITH NAME */
+const matchItems = document.querySelectorAll('.drag-item');
+const matchZones = document.querySelectorAll('.drop-zone');
+const matchFeedback = document.getElementById('matchFeedback');
+
+matchItems.forEach(item => {
+  item.addEventListener('dragstart', () => draggedItem = item);
+  item.addEventListener('dragend', () => draggedItem = null);
+});
+
+matchZones.forEach(zone => {
+  zone.addEventListener('dragover', e => e.preventDefault());
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    if (!draggedItem) return;
+
+    const correct = zone.dataset.accept;
+    const type = draggedItem.dataset.type;
+
+    if (correct === type) {
+      zone.appendChild(draggedItem);
+      matchFeedback.textContent = "Correct!";
+      matchFeedback.className = "feedback correct";
+    } else {
+      matchFeedback.textContent = "Try again!";
+      matchFeedback.className = "feedback incorrect";
+    }
+  });
+});
+
+/* TRUE/FALSE FIXED */
+document.querySelectorAll('.true-false-item').forEach(item => {
+  const correct = item.getAttribute('data-answer');
+  const feedback = item.querySelector('.feedback');
+
+  const btnTrue = item.querySelector('.btn-true');
+  const btnFalse = item.querySelector('.btn-false');
+
+  btnTrue.addEventListener('click', () => {
+    if (correct === "true") {
+      feedback.textContent = "Correct!";
+      feedback.className = "feedback correct";
+    } else {
+      feedback.textContent = "Incorrect";
+      feedback.className = "feedback incorrect";
+    }
+  });
+
+  btnFalse.addEventListener('click', () => {
+    if (correct === "false") {
+      feedback.textContent = "Correct!";
+      feedback.className = "feedback correct";
+    } else {
+      feedback.textContent = "Incorrect";
+      feedback.className = "feedback incorrect";
+    }
+  });
+});
+
+/* FINAL QUIZ */
+document.querySelectorAll('.quiz-question').forEach(question => {
+  const correct = question.getAttribute('data-correct');
+  const feedback = question.querySelector('.feedback');
+  const choices = question.querySelectorAll('.choice');
+
+  choices.forEach(choice => {
+    choice.addEventListener('click', () => {
+      const value = choice.getAttribute('data-value');
+      if (value === correct) {
+        feedback.textContent = "Correct! 🎉";
+        feedback.className = "feedback correct";
+      } else {
+        feedback.textContent = "Try again!";
+        feedback.className = "feedback incorrect";
+      }
+    });
+  });
+});
+
+document.getElementById('resetFinalQuiz').addEventListener('click', () => {
+  document.querySelectorAll('.quiz-question .feedback').forEach(fb => {
+    fb.textContent = "";
+    fb.className = "feedback";
+  });
+});
+</script>
+
+</body>
+</html>
